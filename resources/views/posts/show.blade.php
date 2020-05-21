@@ -10,20 +10,18 @@
         </h5>
           <p class="card-text">{!!$post->body!!}</p>
 @if (!Auth::guest())
-@if (Auth::user()->id == $post->user_id)
-<p>      <a href="/posts/{{$post->id}}/edit" class="btn btn-info">edit</a>         
-  {!! Form::open(['action' => ['PostsController@destroy', $post->id], 'method'=>'post', 'class'=>'pull-right']) !!}
-  {!! Form::hidden('_method', 'delete', ) !!}
- {!! Form::submit('Delete', ['class' =>'btn btn-danger']) !!}
- 
- {!! Form::close() !!}<p class="small">written on {{ $post->created_at }} By {{$post->user->name}}</p>
+    @if (Auth::user()->id == $post->user_id)
+        <a href="/posts/{{$post->id}}/edit" class="btn btn-info">edit</a>         
+        {!! Form::open(['action' => ['PostsController@destroy', $post->id], 'method'=>'post', 'class'=>'pull-right']) !!}
+        {!! Form::hidden('_method', 'delete', ) !!}
+        {!! Form::submit('Delete', ['class' =>'btn btn-danger']) !!}
+      
+        {!! Form::close() !!}<p class="small">written on {{ $post->created_at }} By {{$post->user->name}}</p>
 
-@endif
+    @endif
     
 @endif
-
-
-</p>       </div>
+ </div>
      </div> 
 </div>
         

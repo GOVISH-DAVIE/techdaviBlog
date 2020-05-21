@@ -7,7 +7,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
-<a href="/posts/create" class="btn btn-dark">create a post</a>
+<a href="/collections/create" class="btn btn-dark">create a Collection</a>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">

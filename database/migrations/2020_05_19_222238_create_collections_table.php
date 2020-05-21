@@ -17,7 +17,7 @@ class CreateCollectionsTable extends Migration
             $table->id();
             $table->text('name');
             $table->longText('description');
-            $table->text('user');
+            $table->text('user_id');
             $table->text('cover_image');
             $table->integer('Subscribers');
             $table->timestamps();

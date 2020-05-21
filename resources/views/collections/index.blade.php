@@ -4,15 +4,13 @@
 
     @if (count($collections) >0)
         @foreach ($collections as $collection)
-        <div class="card"  >
-            <div class="card-body  " style="height: 150px"> 
-              <div class="row no-gutters">
-                <div class="col-sm-12 col-md-4 " style="height:100px;background-image: url(/storage/cover_images/{{$collection->cover_image}}); background-position: center;background-size: contain;background-repeat: no-repeat "> 
-                </div>
-                <br clear="left">
+        <div class="card  shadow-sm"  > 
+              <div class="row  "card-body" style="   " >
+                <div class="col-sm-12 col-md-2 " style="height:inherit;background-image: url(/storage/cover_images/{{$collection->cover_image}}); background-position: center;background-size: contain;background-repeat: no-repeat "> 
+                </div> 
 
                 {{-- decription for the collection --}}
-                <div class="col-sm-12 col-md-6">
+                <div class="col-sm-12 col-md-8">
                   
                   <ul class="list-group list-group-flush" >
                     <li class="list-group-item" style="border: none !important">
@@ -24,25 +22,37 @@
 
                  {{--
                    collection action
-                   --}}
-                   <div class="col-sm-12 col-md-2">
+                   --}} 
+                   <div class="col-sm-12 col-md-2" style="  margin:none; padding: none">
                   
-                    <ul class="list-group list-group-flush" >
-                      <li class="list-group-item" style="border: none !important"> 
-                        <a href=""> View Post</a>
+                    <ul class="list-group "  style="  margin:none; padding: none" >
+                      <li class="list-group-item" style="border: none !important; margin:none; padding:none"> 
+                        <a href="/collections/{{$collection->id}}" class="btn btn-light"> View Post</a>
                       </li>
                       <li class="list-group-item" style="border: none !important">
-                        <a href="">Delete</a>
-                      </li>
+                        <a href="/collections/{{$collection->id}}/edit" class=" btn btn-warning">Edit</a>
+                      </li> 
+                      <li class="list-group-item" style="border: none !important">
+                     @if (!Auth::guest())
+                     
+                          @if ($collection->user_id == Auth::user()->id)
+                          {!! Form::open(['action' => ['PostsController@destroy', $collection->id], 'method'=>'post', 'class'=>'pull-right']) !!}
+                          {!! Form::hidden('_method', 'delete', ) !!}
+                          {!! Form::submit('Delete', ['class' =>'btn btn-danger']) !!}
+                          
+                          {!! Form::close() !!} 
+                      @endif
+                         
+                     @endif
                     
-
+                      </li> 
                     </ul> 
                    </div>
   
               </div>
           
               {{-- <p class="small">written on {{ $post->created_at }} By {{$post->user->name}}</p> --}}
-           </div>
+          
          </div>
         @endforeach
     @else

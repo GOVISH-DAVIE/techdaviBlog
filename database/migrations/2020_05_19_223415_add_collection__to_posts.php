@@ -15,7 +15,7 @@ class AddCollectionToPosts extends Migration
     {
         Schema::table('posts', function (Blueprint $table) {
             //
-            $table->text('collection');
+            $table->text('collection_id');
         });
     }
 
@@ -28,7 +28,7 @@ class AddCollectionToPosts extends Migration
     {
         Schema::table('posts', function (Blueprint $table) {
             //
-            $table->dropColumn('collection');
+            $table->dropColumn('collection_id');
         });
     }
 }

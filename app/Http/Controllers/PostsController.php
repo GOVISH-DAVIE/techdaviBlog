@@ -55,7 +55,8 @@ class PostsController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required',
-            'cover_image' => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048"
+            'cover_image' => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            'collection'=>'required'
         ]);
 
         // Handle File Upload
@@ -81,9 +82,10 @@ class PostsController extends Controller
         $post->body = $request->input('body');
         $post->user_id = auth()->user()->id;
         $post->cover_image = $fileNameToStore;
+        $post->collection_id = $request->input('collection');
         $post->save();
 
-        return redirect('/posts')->with('success', 'Post Created');
+        return redirect('/collections/'.$request->input('collection'))->with('success', 'Post Created');
     }
 
     /**
